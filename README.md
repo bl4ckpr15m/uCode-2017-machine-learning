@@ -1,12 +1,15 @@
 # uCode-March-2017 [![Build Status](https://travis-ci.org/TheGreatGatsvim/uCode-March-2017.svg?branch=master)](https://travis-ci.org/TheGreatGatsvim/uCode-March-2017)
 ## Prerequisites
 1. ruby 2.4
-..* compass
+  * compass
+  
 2. Python 3
-..* pip
-..* virtualenvwrapper
+  * pip
+  * virtualenvwrapper
+  
 3. Redis
 4. git
+
 ## Install
 I hardly recommend to install [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html)
 ```bash
