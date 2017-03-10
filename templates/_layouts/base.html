@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static from staticfiles %}
+{% load custom_tags %}
+
 
 <html lang="es">
 	<head>
@@ -24,15 +26,14 @@
 		<title>{% block title %}{{ "the great gatsvim" | upper }}{% endblock %}</title>
 		{% block head%}
 		<link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
+		<style>.background, .blur{background-image: url({% picture %});}</style>
 		{% endblock %}
 	</head>
-	<body>
-		{% include "_modules/head.html" %}
+	<body class="{% block background %}{% endblock %}">
 		{% block content%}
 		{% endblock %}
 
 		<footer>
-			{% include "_modules/footer.html" %}
 			{% block footer%}
 			{% endblock %}
 		</footer>

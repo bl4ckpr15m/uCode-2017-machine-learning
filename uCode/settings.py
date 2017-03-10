@@ -3,9 +3,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jygm74&8bd3j&$#y!x8%m!2zz(*7h9$(0$i5cqi@xpl@qk@v!l'
-
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -27,6 +24,10 @@ INSTALLED_APPS = [
 
         'rest_framework',
         'import_export',
+        'crispy_forms',
+        'djcelery',
+        'profiles',
+        'lib',
         ]
 
 if DEBUG:
@@ -64,6 +65,7 @@ TEMPLATES = [
                     'django.contrib.auth.context_processors.auth',
                     'django.contrib.messages.context_processors.messages',
                     ],
+                'builtins': []
                 },
             },
         ]
@@ -77,9 +79,10 @@ REST_FRAMEWORK = {
         'PAGE_SIZE': 100,
         }
 
-# LOGIN_REDIRECT_URL = 'api:api-root'
-# LOGIN_URL = 'rest_framework:login'
-# redirect_unauthenticated_users = True
+LOGIN_REDIRECT_URL = 'main'
+LOGIN_URL = 'login'
+redirect_unauthenticated_users = True
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 WSGI_APPLICATION = 'uCode.wsgi.application'
 
@@ -131,11 +134,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-
-SERIALIZATION_MODULES = {
-        'geojson': 'djgeojson.serializers'
-        }
-
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
@@ -145,3 +143,8 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+try:
+    from uCode.local_settings import *
+except ImportError:
+    pass
