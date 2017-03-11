@@ -27,7 +27,7 @@ class LoginView(
             return self.form_invalid(form)
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy('main')
+        return reverse_lazy('sneakers:main')
 
 
 class LogoutView(
