@@ -1,26 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
-# import pandas as pd
-# import numpy as np
-from sklearn import datasets, tree
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from celery.signals import celeryd_after_setup
 from uCode.celery import app
-
-import pydotplus
-
-
-def print_pdf(self, filename="decisionTree.pdf"):
-    dot_data = tree.export_graphviz(self.classifier,
-                                    out_file=None,
-                                    feature_names=self.data.feature_names,
-                                    class_names=self.data.target_names,
-                                    filled=True,
-                                    rounded=True,
-                                    special_characters=True)
-    graph = pydotplus.graph_from_dot_data(dot_data)
-    graph.write_pdf(filename)
+import tensorflow as tf
 
 
 @app.task(trail=True)

@@ -26,8 +26,8 @@ INSTALLED_APPS = [
         'import_export',
         'crispy_forms',
         'djcelery',
-        'profiles',
         'lib',
+        'sneakers',
         ]
 
 if DEBUG:
@@ -79,7 +79,7 @@ REST_FRAMEWORK = {
         'PAGE_SIZE': 100,
         }
 
-LOGIN_REDIRECT_URL = 'main'
+LOGIN_REDIRECT_URL = 'sneakers:main'
 LOGIN_URL = 'login'
 redirect_unauthenticated_users = True
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
