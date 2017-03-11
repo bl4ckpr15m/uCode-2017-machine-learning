@@ -3,7 +3,7 @@ from django.db import models
 
 class Sneaker(models.Model):
     label = models.CharField(max_length=240)
-    feature = models.URLField()
+    feature = models.ImageField(upload_to="test/")
 
     def __str__(self):
         return self.label
@@ -13,5 +13,5 @@ class Sneaker(models.Model):
 
 
 class PredictSneaker(models.Model):
-    feature = models.ImageField()
+    feature = models.ImageField(upload_to="predict/")
     label = models.CharField(max_length=240, blank=True, null=True)

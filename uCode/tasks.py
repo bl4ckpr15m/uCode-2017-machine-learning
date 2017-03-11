@@ -2,34 +2,37 @@
 from __future__ import absolute_import, unicode_literals
 from celery.signals import celeryd_after_setup
 from uCode.celery import app
-import tensorflow as tf
+from sneakers.models import Sneaker
+from django.core import files
+import requests
+import tempfile
+
+
+@app.task(trail=True)
+def save_sneaker(label, url):
+    request = requests.get(url, stream=True)
+    file_name = url.split('/')[-1]
+    lf = tempfile.NamedTemporaryFile()
+    for block in request.iter_content(1024 * 8):
+        if not block:
+            break
+        lf.write(block)
+
+    sneaker = Sneaker()
+    sneaker.label = label
+    sneaker.feature.save(file_name, files.File(lf))
+    sneaker.save()
 
 
 @app.task(trail=True)
 @celeryd_after_setup.connect
 def train(**kwargs):
-    # TODO: download and parse dataset
-    data = datasets.load_iris()
-    X = data.data
-    y = data.target
-    # TODO: store data in db
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.5)
-    # TODO: store X_train, X_test, y_train, y_test in db
-    print("-"*9)
-    print(X_train, X_test, y_train, y_test)
-    print("-"*9)
+    print("train")
 
 
 @app.task(trail=True)
 def predict(X_train, X_test, y_train, y_test):
-    classifier = tree.DecisionTreeClassifier()
-    classifier.fit(X_train, y_train)
-
-    predictions = classifier.predict(X_test)
-    accuracy = accuracy_score(y_test, predictions)
-    # TODO: store predictions and accuracy in db
-    print(predictions, accuracy)
+    print("predict")
 
 
 @app.task(trail=True)

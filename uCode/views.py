@@ -4,6 +4,7 @@ from django.views import generic
 from braces import views
 
 from uCode.forms import LoginForm
+from uCode import tasks as tk
 
 
 class LoginView(
