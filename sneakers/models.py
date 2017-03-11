@@ -8,10 +8,10 @@ class Sneaker(models.Model):
     feature = models.ImageField(upload_to="predict/")
 
     def __str__(self):
-        return self.label
+        return self.feature.path
 
     def __unicode__(self):
-        return unicode(self.label)
+        return unicode(self.feature.path)
 
     class Meta:
         ordering = ('-created_at',)

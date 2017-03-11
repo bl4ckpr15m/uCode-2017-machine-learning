@@ -39,7 +39,11 @@ class IndexView(
 
     def form_valid(self, form):
         feature = form.cleaned_data['feature']
-        # tk.predict.delay()
+        sneaker = Sneaker()
+        sneaker.feature = feature
+        sneaker.save()
+
+        tk.PredictTask.delay(sneaker.pk)
         return super(IndexView, self).form_valid(form)
 
     def get_success_url(self, **kwargs):
