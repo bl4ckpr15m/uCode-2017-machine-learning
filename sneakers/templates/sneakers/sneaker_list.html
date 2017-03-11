@@ -29,6 +29,9 @@
 				<div class="col-xs-12 col-lg-9 col-md-9">
 					<h4>{{ object.label|title }}</h4>
 					<p>
+					<a href="http://www.adidas.es/personalizar?prefn1=division&prefn2=outlet&prefv3={{object.label|title}}&srule=sort2-category-topsellers&prefv1=Originals&prefv2=regular&prefn3=sportSub" class="btn btn-lg btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shop it</a>
+					</p>
+					<p>
 					<span class="label-align">
 						<i class="fa fa-clock-o" aria-hidden="true"></i>
 						<time class="duration" datetime="{{ object.created_at|date:'c' }}" title="{{ object.created_at|date:'c' }}">{{ object.created_at|date:'j F Y' }}</time>
