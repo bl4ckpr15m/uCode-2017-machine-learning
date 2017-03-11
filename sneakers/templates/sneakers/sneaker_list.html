@@ -1,0 +1,60 @@
+{% extends "_layouts/base.html"  %}
+
+{% block background %}background{% endblock %}
+
+{% block content %}
+{% include "_modules/nav.html" %}
+
+<div class="container row">
+	<div class="col-xs-12 col-lg-3 col-md-3 help-box">
+		{% for object in object_list %}
+		<div class="bs-callout bs-callout-success">
+			<h4>{{ object.label|title }}</h4>
+			<p>
+			<span class="label-align">
+				<i class="fa fa-clock-o" aria-hidden="true"></i>
+				<time class="duration" datetime="{{ object.created_at|date:'c' }}" title="{{ object.created_at|date:'c' }}">{{ object.created_at|date:'j F Y' }}</time>
+			</span>
+			</p>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="col-xs-12 col-lg-9 col-md-9">
+		{% with object_list|first as object%}
+		<div class="main-help-box">
+			<div class="bs-callout bs-callout-primary row">
+				<div class="col-xs-12 col-lg-9 col-md-9">
+					<h4>{{ object.label|title }}</h4>
+					<p>
+					<span class="label-align">
+						<i class="fa fa-clock-o" aria-hidden="true"></i>
+						<time class="duration" datetime="{{ object.created_at|date:'c' }}" title="{{ object.created_at|date:'c' }}">{{ object.created_at|date:'j F Y' }}</time>
+					</span>
+					</p>
+				</div>
+				<div class="col-xs-12 col-lg-3 col-md-3">
+					<span href="#" class="thumbnail">
+						<img src="{{ object.feature.url }}" alt="">
+					</span>
+				</div>
+			</div>
+			{% endwith %}
+		</div>
+
+
+		<div class="main-help-box">
+			<div class="bs-callout bs-callout-default">
+				<h4>{{ object.label|title }}</h4>
+				<p>
+				<span class="label-align">
+					<i class="fa fa-clock-o" aria-hidden="true"></i>
+					<time class="duration" datetime="{{ object.created_at|date:'c' }}" title="{{ object.created_at|date:'c' }}">{{ object.created_at|date:'j F Y' }}</time>
+				</span>
+				</p>
+			</div>
+
+		</div>
+	</div>
+</div>
+{% endblock %}

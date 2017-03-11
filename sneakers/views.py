@@ -4,6 +4,21 @@ from braces import views
 
 from sneakers.forms import PictureForm
 # from uCode import tasks as tk
+from sneakers.models import Sneaker
+
+
+class SneakersListView(
+        views.LoginRequiredMixin,
+        views.SetHeadlineMixin,
+        generic.ListView):
+
+    headline = 'Sneakers'
+    model = Sneaker
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(SneakersListView, self).get_context_data(*args, **kwargs)
+        # context['tweets'] = 
+        return context
 
 
 class IndexView(
@@ -16,12 +31,12 @@ class IndexView(
     form_class = PictureForm
 
     def get(self, request, *args, **kwargs):
-        # tk.get_sneakers.delay()
         return self.render_to_response(self.get_context_data())
 
     def form_valid(self, form):
         feature = form.cleaned_data['feature']
-        print(feature)
+        # tk.predict.delay()
+        return super(IndexView, self).form_valid(form)
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy('sneakers:main')
+        return reverse_lazy('sneakers:profile')

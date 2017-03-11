@@ -8,7 +8,7 @@ from sneakers import models
 class PictureForm(forms.ModelForm):
     class Meta:
         fields = ('feature',)
-        model = models.PredictSneaker
+        model = models.Sneaker
 
     def __init__(self, *args, **kwargs):
         super(PictureForm, self).__init__(*args, **kwargs)
