@@ -2,8 +2,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from braces import views
 
+from uCode.settings import twitter_api
 from sneakers.forms import PictureForm
-# from uCode import tasks as tk
+from uCode import tasks as tk
 from sneakers.models import Sneaker
 
 
@@ -17,7 +18,10 @@ class SneakersListView(
 
     def get_context_data(self, *args, **kwargs):
         context = super(SneakersListView, self).get_context_data(*args, **kwargs)
-        # context['tweets'] = 
+        sneaker = Sneaker.objects.first()
+        context['tweets'] = twitter_api.GetSearch(
+                raw_query="q={}&result_type=recent&count=7".format(sneaker.label))
+
         return context
 
 

@@ -12,3 +12,6 @@ class Sneaker(models.Model):
 
     def __unicode__(self):
         return unicode(self.label)
+
+    class Meta:
+        ordering = ('-created_at',)

@@ -1,4 +1,6 @@
 {% extends "_layouts/base.html"  %}
+{% load emoji_tags %}
+{% load twitter_tags %}
 
 {% block background %}background{% endblock %}
 
@@ -44,16 +46,18 @@
 
 
 		<div class="main-help-box">
-			<div class="bs-callout bs-callout-default">
-				<h4>{{ object.label|title }}</h4>
-				<p>
-				<span class="label-align">
-					<i class="fa fa-clock-o" aria-hidden="true"></i>
-					<time class="duration" datetime="{{ object.created_at|date:'c' }}" title="{{ object.created_at|date:'c' }}">{{ object.created_at|date:'j F Y' }}</time>
-				</span>
-				</p>
+			{% for tweet in tweets %}
+			<div class="bs-callout bs-callout-default row">
+				<div class="col-xs-12 col-lg-2 col-md-2">
+					<span href="#" class="custom-pic">
+						<img src="{{ tweet.user.profile_image_url }}" alt="">
+					</span>
+				</div>
+				<div class="col-xs-12 col-lg-10 col-md-10">
+					{{ tweet|expand_tweet_urls|clean_media_urls|urlize_tweet_text|safe }}
+				</div>
 			</div>
-
+			{% endfor %}
 		</div>
 	</div>
 </div>

@@ -26,6 +26,7 @@ INSTALLED_APPS = [
         'import_export',
         'crispy_forms',
         'djcelery',
+        'emoji',
         'lib',
         'sneakers',
         ]

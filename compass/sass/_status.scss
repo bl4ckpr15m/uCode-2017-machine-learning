@@ -1,7 +1,12 @@
-.help-box{
-	height: 100vh;
+.emoji{
+	width: 40px;
 }
-.main-help-box{
+.custom-pic{
+	img{
+		border-radius: 50%;
+		width: 100%;
+		height: 100%;
+	}
 }
 .help-box,
 .main-help-box{

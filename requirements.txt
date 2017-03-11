@@ -14,6 +14,7 @@ django-autofixture==0.12.1
 django-braces==1.11.0
 django-celery==3.2.1
 django-crispy-forms==1.6.1
+django-emoji==2.2.0
 django-extensions==1.7.7
 django-filter==1.0.1
 django-import-export==0.5.1
