@@ -1,20 +1,24 @@
-from django.contrib.auth.forms import AuthenticationForm
+from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, ButtonHolder, Submit
 
+from sneakers import models
 
-class LoginForm(AuthenticationForm):
+
+class PictureForm(forms.ModelForm):
+    class Meta:
+        fields = ('feature',)
+        model = models.PredictSneaker
 
     def __init__(self, *args, **kwargs):
-        super(LoginForm, self).__init__(*args, **kwargs)
+        super(PictureForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper()
         self.helper.form_class = 'col-md-9 col-md-offset-1'
         self.helper.layout = Layout(
-                'username',
-                'password',
+                'feature',
                 ButtonHolder(
-                    Submit('login', 'Login', css_class='btn')
+                    Submit('send', 'Send', css_class='btn')
                     )
                 )
 

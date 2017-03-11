@@ -14,7 +14,7 @@ def picture():
     data = tumblr_api.posts('adidasoriginals', limit=1, offset=offset)
     try:
         image = data['posts'][0]['photos'][0]['original_size']['url']
-        if(not image is None):
+        if(image != "/None"):
             return image
         else:
             picture()
