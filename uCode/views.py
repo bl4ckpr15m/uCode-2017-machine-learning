@@ -2,9 +2,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from braces import views
+from rest_framework import viewsets
 
 from uCode.forms import LoginForm
 from uCode import tasks as tk
+from sneakers.models import Sneaker
+from .serializers import SneakerSerializer
 
 
 class LoginView(
@@ -40,3 +43,8 @@ class LogoutView(
     def get(self, request, *args, **kwargs):
         logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
+
+
+class SneakersViewSet(viewsets.ModelViewSet):
+    queryset = Sneaker.objects.all().order_by('-created_at')
+    serializer_class = SneakerSerializer

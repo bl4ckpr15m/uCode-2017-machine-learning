@@ -5,17 +5,19 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 from rest_framework import routers
 
-from .views import LoginView, LogoutView
+from uCode import views
 
 router = routers.DefaultRouter()
+router.register(r'sneakers', views.SneakersViewSet)
 
 urlpatterns = [
-        url(r'^admin/', admin.site.urls, name='admin'),
-        url(r'^logout/$', LogoutView.as_view(), name='logout'),
+        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+        url(r'^api/', include(router.urls, namespace='sneakers_api')),
         url(r'^', include('sneakers.urls'), name="sneakers"),
-        url(r'^login/$', LoginView.as_view(), name='login'),
-        url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
-        url(r'^api/v1/', include(router.urls, namespace='api')),
+        url(r'^admin/', admin.site.urls, name='admin'),
+        url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+        url(r'^login/$', views.LoginView.as_view(), name='login'),
+        url(r'^telegrambot/', include('telegrambot.urls', namespace="telegrambot")),
         ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
