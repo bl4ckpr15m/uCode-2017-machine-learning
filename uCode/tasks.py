@@ -4,12 +4,12 @@ from uCode.celery import app
 import tensorflow as tf
 from celery.task import Task
 from uCode.settings import BASE_DIR
+from celery.signals import celeryd_after_setup
 
 from sneakers import models
 
 
 class PredictTask(Task):
-    # @app.task(trail=True)
     def run(self, pk):
         sneaker = models.Sneaker.objects.get(pk=pk)
 

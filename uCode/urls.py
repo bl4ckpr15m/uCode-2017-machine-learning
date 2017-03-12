@@ -7,6 +7,7 @@ from rest_framework import routers
 
 from uCode import views
 
+
 router = routers.DefaultRouter()
 router.register(r'sneakers', views.SneakersViewSet)
 
@@ -17,7 +18,6 @@ urlpatterns = [
         url(r'^admin/', admin.site.urls, name='admin'),
         url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
         url(r'^login/$', views.LoginView.as_view(), name='login'),
-        url(r'^telegrambot/', include('telegrambot.urls', namespace="telegrambot")),
         ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

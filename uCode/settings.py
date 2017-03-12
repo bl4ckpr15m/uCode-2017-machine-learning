@@ -13,6 +13,7 @@ ALLOWED_HOSTS = [
 
 
 # Application definition
+SITE_ID = 1
 
 INSTALLED_APPS = [
         'django.contrib.admin',
@@ -21,12 +22,12 @@ INSTALLED_APPS = [
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'django.contrib.sites',
 
         'rest_framework',
         'import_export',
         'crispy_forms',
         'djcelery',
-        'telegrambot',
         'emoji',
         'lib',
         'sneakers',
@@ -67,7 +68,7 @@ TEMPLATES = [
                     'django.contrib.auth.context_processors.auth',
                     'django.contrib.messages.context_processors.messages',
                     ],
-                'builtins': []
+                'builtins': [],
                 },
             },
         ]
