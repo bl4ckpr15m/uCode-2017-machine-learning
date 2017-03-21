@@ -11,7 +11,7 @@
 4. git
 
 ## Install
-I hardly recommend to install [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html)
+I highly recommend to install [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html)
 ```bash
 $ mkvirtualenv -p python3 ucode
 $ pip install -r requirements.txt
