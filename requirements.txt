@@ -73,7 +73,7 @@ pytz==2016.10
 redis==2.10.5
 requests==2.13.0
 requests-oauthlib==0.8.0
-rsa==3.4.2
+rsa==4.1
 scandir==1.5
 scikit-learn==0.18.1
 scipy==0.18.1
